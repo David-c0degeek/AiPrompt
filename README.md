@@ -63,8 +63,9 @@ When I ask you to refactor code, follow this strict sequence:
 
 ### 5. Document All Assumptions
 ```csharp
-// Assuming: user.Email is a pure getter
-// WARNING: If UpdateProfile() sends email, refactoring is unsafe
+// Assuming: user.Email is a pure property getter with no side effects
+// Assuming: UpdateProfile() only modifies the user's profile data
+// WARNING: If UpdateProfile() also sends notifications, this refactoring is incorrect
 ```
 
 ### 6. Get Confirmation Before Further Cleanup
