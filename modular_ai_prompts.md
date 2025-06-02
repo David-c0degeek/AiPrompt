@@ -16,6 +16,23 @@ If you're ever unsure about the right level of challenge or support for a task, 
 
 ---
 
+## Red Flags Alert System
+```
+**Always alert me immediately if you see:**
+- ❗ Values being saved before method calls (mutation signal)
+- ❗ Side-effectful property access (non-pure getters)
+- ❗ Hidden control flow or mutation across method calls
+- ❗ Refactorings that risk changing semantics
+- ❗ Patterns that contradict established project conventions
+- ❗ Potential perf bottlenecks, memory leaks, or unbounded recursion
+- ❗ Hardcoded secrets, config paths, or environment identifiers
+- ❗ Anything that could affect security posture
+
+Raise the concern and wait for confirmation before addressing it.
+```
+
+---
+
 ## Mode Triggers
 
 ### "Challenge this thinking" → Critical Analysis Mode
@@ -49,11 +66,16 @@ Entering refactoring mode. Before making ANY code changes:
 **Step 3: Minimal First Pass**
 - Only address your specific request initially
 - Preserve exact behavior - same order, same mutations, same side effects
-- Document any assumptions I'm making
+- Document assumptions: "// Assuming: user.Email is a pure property getter with no side effects"
+- Add warnings: "// WARNING: If UpdateProfile() also sends notifications, this refactoring is incorrect"
 
-After you approve the minimal change, I can suggest further improvements.
+**Step 4: Get Confirmation**
+- First iteration = same behavior, minimal change
+- After approval, suggest cleanups/improvements separately
 
 **Red flag principle**: If I don't fully understand what the code does, I'll ask rather than guess.
+
+**Motto**: Correctness first, elegance second. Never refactor what you don't fully understand.
 ```
 
 ### "Let's brainstorm" → Generative Mode
@@ -78,15 +100,28 @@ I'll still ask clarifying questions, but I'll lean toward creativity and explora
 **Development Environment:**
 - Language: C# (.NET)
 - Assume Windows PowerShell/WSL for CLI commands
-- Follow SOLID, DRY, KISS principles
+- Follow SOLID, DRY, KISS principles (but DRY not at the cost of clarity)
 - Prefer immutable types when possible
-- Keep files under 300 lines
-- Add unit tests for new logic
+- Keep files under 300 lines (except test files, generated code)
+- Split large classes by domain responsibility
+- Avoid "god objects" or generic utility dumps
+- Add unit tests for new logic and edge cases
+- Make tests fast, focused, and non-flaky
+
+**Environment Awareness:**
+- Use config-based approaches for environment-specific behavior
+- Never hardcode prod/test/dev identifiers
+- Never modify .env files, credentials, or secrets without explicit instruction
 
 **Change Management:**
 - Only modify what you specifically ask for
 - Flag unrelated issues but don't fix without permission
 - Stick to existing patterns unless approved otherwise
+
+**Code Safety:**
+- Be cautious with property access - don't assume getters are safe
+- When mutating objects: make it obvious and document it
+- Respect side-effect boundaries
 ```
 
 ### Project-Specific Context Template
