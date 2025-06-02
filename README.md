@@ -89,7 +89,6 @@ When I ask you to refactor code, follow this strict sequence:
 
 ### Tool-Specific Output Rules:
 - When suggesting CLI commands (e.g., dotnet, git), assume **Windows PowerShell or WSL**
-- Default project path: `D:\Repos\[ProjectName]`
 - ⚠️ Never modify `.env` files, credentials, or secrets without explicit instruction
 
 ---
