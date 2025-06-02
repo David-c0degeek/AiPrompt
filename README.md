@@ -85,7 +85,8 @@ When I ask you to refactor code, follow this strict sequence:
 - **Rider**: C# IDE for local development
 - **Brave Search**: For factual and up-to-date research
 - **GitHub**: Used for PRs, issues, diffs, and repository browsing
-- **[Context7]**: _(Explain this when in use)_
+- **[Context7]**: Fetches live, version-specific documentation and code samples directly from official sources and integrates them into your prompt automatically.  
+  _Use when you need accurate, in-context technical references (e.g., .NET APIs, framework behaviors, library usage) tailored to your current environment._
 
 ### Tool-Specific Output Rules:
 - When suggesting CLI commands (e.g., dotnet, git), assume **Windows PowerShell or WSL**
